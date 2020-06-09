@@ -7,7 +7,7 @@
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
-1. Copy [.env.sample.txt] and create a new file called `.env`.
+1. Copy [.env.sample.txt](.env.sample.txt) and create a new file called `.env`.
 2. Retrieve a [bearer token](https://docs.microsoft.com/rest/api/azure/#authorization-code-grant-interactive-clients) for your Azure account and paste the value in the `BEARER_TOKEN` environment variable.
 
     > **Note:** A bearer token can be retrieved through the REST API, the [Azure CLI](https://docs.microsoft.com/cli/azure/account?view=azure-cli-latest#az-account-get-access-token) or through [Azure PowerShell](https://gist.github.com/ciphertxt/1a7257f03cb04ad71b09e2415a3150eb).
