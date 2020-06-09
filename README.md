@@ -1,11 +1,15 @@
 # Learning Azure Storage REST APIs
 
+A set of samples for onboarding to and exploring the [Azure Storage Resource Provider REST API](https://docs.microsoft.com/rest/api/storagerp/).
+
 ## Prerequisites
 
 ### Software
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+### Setup
 
 1. Copy [.env.sample.txt](.env.sample.txt) and create a new file called `.env`.
 2. Retrieve a [bearer token](https://docs.microsoft.com/rest/api/azure/#authorization-code-grant-interactive-clients) for your Azure account and paste the value in the `BEARER_TOKEN` environment variable.
