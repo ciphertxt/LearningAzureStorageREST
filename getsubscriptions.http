@@ -1,0 +1,2 @@
+GET https://management.azure.com/subscriptions?api-version=2020-05-01
+Authorization: Bearer {{$dotenv BEARER_TOKEN}}

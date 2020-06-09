@@ -1,0 +1,13 @@
+PUT https://management.azure.com/subscriptions/{{$dotenv SUBSCRIPTION_ID}}/resourceGroups/{{$dotenv RESOURCE_GROUP_NAME}}/providers/Microsoft.Storage/storageAccounts/{{$dotenv STORAGE_ACCOUNT_NAME}}?api-version=2018-02-01
+content-type: application/json
+Authorization: Bearer {{$dotenv BEARER_TOKEN}}
+
+{
+  "sku": {
+    "name": "Standard_GRS"
+  },
+  "kind": "StorageV2",
+  "location": "{{$dotenv LOCATION}}",
+}
+
+# Note that storage accounts are created asynchronously and you can run the same PUT request again until you recieve an HTTP 200 or an error code. ref: https://docs.microsoft.com/rest/api/storagerp/storage-sample-create-account#handle-the-response

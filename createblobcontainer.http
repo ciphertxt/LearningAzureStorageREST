@@ -1,0 +1,8 @@
+PUT https://management.azure.com/subscriptions/{{$dotenv SUBSCRIPTION_ID}}/resourceGroups/{{$dotenv RESOURCE_GROUP_NAME}}/providers/Microsoft.Storage/storageAccounts/{{$dotenv STORAGE_ACCOUNT_NAME}}/blobServices/default/containers/{{$dotenv CONTAINER_NAME}}?api-version=2019-06-01
+content-type: application/json
+Authorization: Bearer {{$dotenv BEARER_TOKEN}}
+
+{}
+
+# Note that you need to provide an empty response body for the PUT call to succeed
+# https://docs.microsoft.com/rest/api/storagerp/blobcontainers/create

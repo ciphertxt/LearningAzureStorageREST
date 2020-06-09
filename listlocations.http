@@ -1,0 +1,4 @@
+GET https://management.azure.com/subscriptions/{{$dotenv SUBSCRIPTION_ID}}/locations?api-version=2020-01-01
+Authorization: Bearer {{$dotenv BEARER_TOKEN}}
+
+# https://docs.microsoft.com/rest/api/resources/subscriptions/listlocations

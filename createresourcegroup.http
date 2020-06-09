@@ -1,0 +1,7 @@
+PUT https://management.azure.com/subscriptions/{{$dotenv SUBSCRIPTION_ID}}/resourcegroups/{{$dotenv RESOURCE_GROUP_NAME}}?api-version=2019-10-01
+content-type: application/json
+Authorization: Bearer {{$dotenv BEARER_TOKEN}}
+
+{
+  "location": "{{$dotenv LOCATION}}"
+}
