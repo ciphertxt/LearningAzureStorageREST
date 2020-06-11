@@ -37,7 +37,7 @@ STRING_TO_SIGN="${STRING_TO_SIGN}\n"
 # /*CanonicalizedHeaders*/
 STRING_TO_SIGN="${STRING_TO_SIGN}x-ms-date:${DATE_ISO}\nx-ms-version:${VERSION}\n"
 # /*CanonicalizedResource*/
-STRING_TO_SIGN="${STRING_TO_SIGN}/${STORAGE_ACCOUNT_NAME}/${CONTAINER_NAME}/\nrestype:container"
+STRING_TO_SIGN="${STRING_TO_SIGN}/${STORAGE_ACCOUNT_NAME}/${CONTAINER_NAME}\nrestype:container"
 
 SIGNATURE=$(printf "${STRING_TO_SIGN}" | openssl dgst -sha256 -mac HMAC -macopt "hexkey:$DECODED_KEY" -binary | base64 -w0)
 
@@ -45,4 +45,5 @@ curl -X PUT \
     -H "x-ms-date:${DATE_ISO}" \
     -H "x-ms-version:${VERSION}" \
     -H "Authorization: SharedKey ${STORAGE_ACCOUNT_NAME}:${SIGNATURE}" \
+    -H "Content-Length: 0" \
     "https://${STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${CONTAINER_NAME}?restype=container"
