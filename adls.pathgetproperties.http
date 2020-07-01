@@ -1,0 +1,6 @@
+HEAD https://{{$dotenv STORAGE_ACCOUNT_NAME}}.blob.core.windows.net/temp/temp1
+x-ms-version: {{$dotenv X-MS-VERSION}}
+Authorization: Bearer {{$dotenv BEARER_STORAGE}}
+Content-Length: 0
+
+# https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/getproperties
