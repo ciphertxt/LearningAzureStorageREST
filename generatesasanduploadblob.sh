@@ -31,6 +31,9 @@ STORAGE_ACCOUNT_NAME=$2
 CONTAINER_NAME=$3
 BLOB_FULL_PATH=$4
 BLOB_NAME=$(basename $BLOB_FULL_PATH)
+# Obtain the storage account's primary key for signing using the Azure CLI
+# https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
+# https://docs.microsoft.com/cli/azure/storage/account/keys?view=azure-cli-latest#az-storage-account-keys-list
 PRIMARY_KEY=$(az storage account keys list -g $RESOURCE_GROUP_NAME -n $STORAGE_ACCOUNT_NAME --query "[0].value" -o tsv)
 VERSION="2019-07-07"
 DECODED_KEY="$(echo -n $PRIMARY_KEY | base64 -d -w0 | xxd -p -c256)"
@@ -101,6 +104,9 @@ SAS_TOKEN="${SAS_TOKEN}&spr=https"
 SAS_TOKEN="${SAS_TOKEN}&sig=${SIGNATURE_SAS_ENC}"
 
 echo "SAS token: ${SAS_TOKEN}"
+
+# Put Blob operation
+# https://docs.microsoft.com/rest/api/storageservices/put-blob
 
 curl -X PUT \
     -T $BLOB_FULL_PATH \
