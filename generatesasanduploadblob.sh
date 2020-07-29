@@ -41,30 +41,38 @@ CANONICALIZEDRESOURCE="/blob/${STORAGE_ACCOUNT_NAME}/${CONTAINER_NAME}"
 SIGNED_RESOURCE="c"
 
 # Container permissions can be granular (ordering is important)
-# https://docs.microsoft.com/en-us/rest/api/storageservices/create-service-sas#permissions-for-a-container
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#permissions-for-a-container
 SAS_PERMS="rcw"
 
 # /*Signed permissions*/
 STRING_TO_SIGN="${SAS_PERMS}\n"
 # /*Signed start*/
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-the-signature-validity-interval
 STRING_TO_SIGN="${STRING_TO_SIGN}${DATE_ISO8601}\n"  
 # /*Signed expiry*/
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-the-signature-validity-interval
 STRING_TO_SIGN="${STRING_TO_SIGN}${DATEPLUSONE_ISO8601}\n"
 # /*Canonicalized resource*/
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#versions-prior-to-2012-02-12
 STRING_TO_SIGN="${STRING_TO_SIGN}${CANONICALIZEDRESOURCE}\n"
 # /*Signed identifier*/
 STRING_TO_SIGN="${STRING_TO_SIGN}\n"  
-# /*Signed IP address or address range*/
+# /*Signed IP address or address range*/ 
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-ip-address-or-ip-range
 STRING_TO_SIGN="${STRING_TO_SIGN}\n"  
 # /*Signed protocol*/
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-the-http-protocol
 STRING_TO_SIGN="${STRING_TO_SIGN}https\n"  
-# /*Signed version*/ https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-the-signed-version-field
+# /*Signed version*/
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-the-signed-version-field
 STRING_TO_SIGN="${STRING_TO_SIGN}${VERSION}\n" 
-# /*Signed resource*/ https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-the-signed-resource-blob-service-only
+# /*Signed resource*/
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-the-signed-resource-blob-service-only
 STRING_TO_SIGN="${STRING_TO_SIGN}${SIGNED_RESOURCE}\n"
 # /*Signed snaptshot time*/
 STRING_TO_SIGN="${STRING_TO_SIGN}\n"
 # /*Cache-Control return header*/
+# https://docs.microsoft.com/rest/api/storageservices/create-service-sas#specifying-query-parameters-to-override-response-headers-blob-and-file-services-only
 STRING_TO_SIGN="${STRING_TO_SIGN}\n"
 # /*Content-Disposition return header*/
 STRING_TO_SIGN="${STRING_TO_SIGN}\n"
