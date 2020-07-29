@@ -94,42 +94,10 @@ SAS_TOKEN="${SAS_TOKEN}&sig=${SIGNATURE_SAS_ENC}"
 
 echo "SAS token: ${SAS_TOKEN}"
 
-# /*HTTP Verb*/  
-STRING_TO_SIGN="PUT\n"
-# /*Content-Encoding*/ 
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"     
-# /*Content-Language*/ 
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"
-# /*Content-Length (empty string when zero)*/
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"
-# /*Content-MD5*/
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"  
-# /*Content-Type*/
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"  
-# /*Date*/
-STRING_TO_SIGN="${STRING_TO_SIGN}\n" 
-# /*If-Modified-Since */
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"  
-# /*If-Match*/ 
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"     
-# /*If-None-Match*/
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"
-# /*If-Unmodified-Since*/
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"  
-# /*Range*/
-STRING_TO_SIGN="${STRING_TO_SIGN}\n"
-# /*CanonicalizedHeaders*/
-STRING_TO_SIGN="${STRING_TO_SIGN}x-ms-date:${DATE_ISO}\nx-ms-version:${VERSION}\n"
-# /*CanonicalizedResource*/
-STRING_TO_SIGN="${STRING_TO_SIGN}/${STORAGE_ACCOUNT_NAME}/${CONTAINER_NAME}\nrestype:container"
-
-SIGNATURE=$(printf "${STRING_TO_SIGN}" | openssl dgst -sha256 -mac HMAC -macopt "hexkey:$DECODED_KEY" -binary | base64 -w0)
-
 curl -X PUT \
     -T $BLOB_FULL_PATH \
     -H "x-ms-date:${DATE_ISO}" \
     -H "x-ms-version:${VERSION}" \
     -H "x-ms-blob-type: BlockBlob" \
-    -H "Content-Length: 0" \
     -H "Content-Type: text/plain; charset=UTF-8" \
     "https://${STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${CONTAINER_NAME}/${BLOB_NAME}?${SAS_TOKEN}"
