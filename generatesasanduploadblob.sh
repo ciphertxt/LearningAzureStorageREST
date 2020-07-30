@@ -2,6 +2,7 @@
 
 echo "usage: ${0##*/} <RESOURCE_GROUP_NAME> <STORAGE_ACCOUNT_NAME> <CONTAINER_NAME> <BLOB_FULL_PATH>"
 
+# functions from https://gist.github.com/cdown/1163649#file-gistfile1-sh
 urlencode() {
     # urlencode <string>
     old_lc_collate=$LC_COLLATE
