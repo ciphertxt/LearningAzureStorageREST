@@ -39,7 +39,10 @@ PRIMARY_KEY=$(az storage account keys list -g $RESOURCE_GROUP_NAME -n $STORAGE_A
 VERSION="2019-07-07"
 DECODED_KEY="$(echo -n $PRIMARY_KEY | base64 -d -w0 | xxd -p -c256)"
 DATE_ISO=$(TZ=GMT date "+%a, %d %h %Y %H:%M:%S %Z")
-DATE_ISO8601=$(TZ=GMT date --date="${DATE_ISO}" "+%Y-%m-%dT%H:%M:%SZ")
+# Set start time (st) to now -15 minutes
+# https://docs.microsoft.com/azure/storage/common/storage-sas-overview#best-practices-when-using-sas
+DATE_ISO8601=$(TZ=GMT date -d "-15 minutes" "+%Y-%m-%dT%H:%M:%SZ")
+# Set expiry date (se) to now +1 days
 DATEPLUSONE_ISO8601=$(TZ=GMT date -d "+1 days" "+%Y-%m-%dT%H:%M:%SZ")
 CANONICALIZEDRESOURCE="/blob/${STORAGE_ACCOUNT_NAME}/${CONTAINER_NAME}"
 SIGNED_RESOURCE="c"
