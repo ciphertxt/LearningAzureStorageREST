@@ -39,7 +39,7 @@ STRING_TO_SIGN="${STRING_TO_SIGN}\n"
 # /*CanonicalizedHeaders*/
 STRING_TO_SIGN="${STRING_TO_SIGN}x-ms-date:${DATE_ISO}\nx-ms-version:${VERSION}\n"
 # /*CanonicalizedResource*/
-STRING_TO_SIGN="${STRING_TO_SIGN}/${STORAGE_ACCOUNT_NAME}/\ncomp:blocklist"
+STRING_TO_SIGN="${STRING_TO_SIGN}/${STORAGE_ACCOUNT_NAME}/${CONTAINER_AND_PATH}\ncomp:blocklist"
 
 SIGNATURE=$(printf "${STRING_TO_SIGN}" | openssl dgst -sha256 -mac HMAC -macopt "hexkey:$DECODED_KEY" -binary | base64 -w0)
 
